@@ -12,6 +12,7 @@ const redisStore = require('koa-redis');
 const errorViewRouter = require('./routes/view/error');
 const index = require('./routes/index');
 const userViewRouter = require('./routes/view/user');
+const userApiRouter = require('./routes/api/user');
 
 const { REDIS_CONF } = require('./conf/db');
 const { isProd } = require('./utils/env');
@@ -72,6 +73,7 @@ app.use(session({
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(userViewRouter.routes(), userViewRouter.allowedMethods());
+app.use(userApiRouter.routes(), userApiRouter.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling
