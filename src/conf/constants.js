@@ -4,6 +4,5 @@
  */
 
 module.exports = {
-    secret : '_++/~~~-$%Av',
     DEFAULT_PICTURE : "https://dwz.cn/rnTnftZs"
 };

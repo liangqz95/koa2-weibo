@@ -19,7 +19,7 @@ const User = seq.define('user', {
         comment: "密码"
     },
     nickName : {
-        type : DECIMAL,
+        type : STRING,
         allowNull : false,
         defaultValue : 3,
         comment : "性别｛1、男，2、女，3、保密｝"

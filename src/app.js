@@ -16,9 +16,10 @@ const userApiRouter = require('./routes/api/user');
 
 const { REDIS_CONF } = require('./conf/db');
 const { isProd } = require('./utils/env');
-const jwt = require('koa-jwt');
+const { SESSION_SECRET_KEY } = require('./conf/secretKeys');
+// const jwt = require('koa-jwt');
+// const { secret } = require("./conf/constants");
 
-const { secret } = require("./conf/constants");
 // error handler
  let onerrorConf = {};
  if (isProd) {
@@ -47,7 +48,7 @@ app.use(views(__dirname + '/views', {
 }));
 
  // session 配置
-app.keys = ['As$_=-+&'];
+app.keys = [SESSION_SECRET_KEY];
 app.use(session({
   key : 'weibo.sid',
   prefix : 'weibo:sess:',

@@ -54,7 +54,7 @@
                         userName
                     }, function(err, data) {
                         $spanUserNameInfo.show()
-                        if (err) {
+                        if (err['errno'] !== 0) {
                             $spanUserNameInfo.text('用户名可用')
                             isUserNameExist = false
                         } else {
@@ -110,8 +110,8 @@
                     password,
                     gender
                 }, function(err, data) {
-                    if (err) {
-                        alert(err)
+                    if (err['errno'] !== 0) {
+                        console.log(err)
                         return
                     }
                     alert('注册成功，请登录')

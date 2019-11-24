@@ -3,11 +3,14 @@
  * @author lqz
  */
 
-const { getUserInfo } = require('../services/user');
+const { getUserInfo, createUser } = require('../services/user');
 const { SuccessModel, ErrorModel } = require('../model/ResModel');
 const {
-    registerUserNameNotExistInfo
+    registerUserNameNotExistInfo,
+    registerUserNameExistInfo,
+    registerFailInfo
 } = require('../model/ErrorInfo');
+const { doCrypto } = require('../utils/cryp');
 
 /**
  * 用户名是否存在
@@ -24,9 +27,36 @@ async function isExist(userName) {
         return new ErrorModel(registerUserNameNotExistInfo)
     }
 
-    //
+}
+
+/**
+ * 注册
+ * @param userName
+ * @param password
+ * @param gender
+ * @returns {Promise<void>}
+ */
+async function register({userName, password, gender}){
+    const userInfo = await getUserInfo(userName);
+    if (userInfo){
+        // 已存在
+        return new ErrorModel(registerUserNameExistInfo)
+    }
+
+    try {
+        await createUser({
+            userName,
+            password : doCrypto(password),
+            gender
+        });
+        return new SuccessModel()
+    }catch (err) {
+        console.log(err.message, err.stack);
+        return new ErrorModel(registerFailInfo)
+    }
 }
 
 module.exports = {
-    isExist
+    isExist,
+    register
 };
