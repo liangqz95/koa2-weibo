@@ -27,12 +27,12 @@
                 const password = $inputPassword.val()
 
                 // 提交数据
-                ajax.post('/api/user/login', {
+                $.post('/api/user/login', {
                     userName,
                     password
                 }, function(err, data) {
-                    if (err) {
-                        alert(err)
+                    if (err['errno'] !== 0) {
+                        alert(err['message'])
                         return
                     }
                     // 跳转到指定 url 或首页
