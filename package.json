@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js ./src"
   },
   "dependencies": {
+    "ajv": "^6.10.2",
     "debug": "^4.1.1",
     "ejs": "~2.3.3",
     "jest": "^24.9.0",
