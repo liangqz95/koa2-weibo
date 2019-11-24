@@ -72,8 +72,8 @@ app.use(session({
 
 // routes
 app.use(index.routes(), index.allowedMethods());
-app.use(userViewRouter.routes(), userViewRouter.allowedMethods());
 app.use(userApiRouter.routes(), userApiRouter.allowedMethods());
+app.use(userViewRouter.routes(), userViewRouter.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling

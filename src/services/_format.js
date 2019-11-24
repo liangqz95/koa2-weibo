@@ -3,6 +3,8 @@
  * @author lqz
  */
 
+const { DEFAULT_PICTURE } = require('../conf/constants');
+
 /**
  * 用户默认头像
  * @param obj
@@ -11,7 +13,7 @@
  */
 function _formatUserPicture(obj) {
     if (obj.picture == null){
-        obj.picture = 'https://dwz.cn/rnTnftZs'
+        obj.picture = DEFAULT_PICTURE
     }
     return obj
 }

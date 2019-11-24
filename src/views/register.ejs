@@ -50,7 +50,7 @@
                 userNameTimeoutId = setTimeout(function() {
                     // 判断用户名是否已存在
                     var userName = $inputUserName.val()
-                    ajax.post('/api/user/isExist', {
+                    $.post('/api/user/isExist', {
                         userName
                     }, function(err, data) {
                         $spanUserNameInfo.show()
@@ -105,7 +105,7 @@
                 var gender = parseInt($selectGender.val())
 
                 // 提交数据
-                ajax.post('/api/user/register', {
+                $.post('/api/user/register', {
                     userName,
                     password,
                     gender
