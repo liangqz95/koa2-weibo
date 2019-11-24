@@ -111,7 +111,7 @@
                     gender
                 }, function(err, data) {
                     if (err['errno'] !== 0) {
-                        console.log(err)
+                        alert(err['message'])
                         return
                     }
                     alert('注册成功，请登录')
