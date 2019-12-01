@@ -9,3 +9,5 @@ out
 gen
 node_modules
 test
+src/public/images/
+uploadFiles/
