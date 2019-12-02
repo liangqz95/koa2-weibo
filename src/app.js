@@ -12,10 +12,12 @@ const koaStatic = require('koa-static');
 
 // 路由
 const errorViewRouter = require('./routes/view/error');
-const index = require('./routes/index');
+//const index = require('./routes/index');
 const userViewRouter = require('./routes/view/user');
 const userApiRouter = require('./routes/api/user');
 const utilsApiRouter = require('./routes/api/utils');
+const blogViewRouter = require('./routes/view/blog');
+const homeApiRouter = require('./routes/api/blog-home');
 
 const { REDIS_CONF } = require('./conf/db');
 const { isProd } = require('./utils/env');
@@ -76,10 +78,12 @@ app.use(session({
 // })
 
 // routes
-app.use(index.routes(), index.allowedMethods());
+//app.use(index.routes(), index.allowedMethods());
 app.use(userViewRouter.routes(), userViewRouter.allowedMethods());
+app.use(blogViewRouter.routes(), blogViewRouter.allowedMethods());
 app.use(userApiRouter.routes(), userApiRouter.allowedMethods());
 app.use(utilsApiRouter.routes(), utilsApiRouter.allowedMethods());
+app.use(homeApiRouter.routes(), homeApiRouter.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling
