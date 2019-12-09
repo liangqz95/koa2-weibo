@@ -3,7 +3,7 @@
  * @author lqz
  */
 
-const {getUsersByFollower, addFollower, deleteFollower} = require('../services/user-relation');
+const {getUsersByFollower, addFollower, deleteFollower, getFollowersByUser} = require('../services/user-relation');
 const {SuccessModel, ErrorModel} = require('../model/ResModel');
 const {addFollowerFailInfo, deleteFollowerFailInfo} = require('../model/ErrorInfo');
 
@@ -18,6 +18,22 @@ async function getFans(userId) {
     return new SuccessModel({
         fansList: userList,
         count
+    })
+}
+
+/**
+ * 根据 userID 获取关注人列表
+ * @param userId
+ * @returns {Promise<void>}
+ */
+async function getFollowers(userId){
+    const {
+        count, userList
+    } = await getFollowersByUser(userId);
+
+    return new SuccessModel({
+        count,
+        followersList : userList
     })
 }
 
@@ -53,5 +69,6 @@ async function unFollow(myUserId, curUserId) {
 module.exports = {
     getFans,
     follow,
-    unFollow
+    unFollow,
+    getFollowers
 };
