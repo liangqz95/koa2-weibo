@@ -3,7 +3,7 @@
  * @author lqz
  */
 
-const { DEFAULT_PICTURE } = require('../conf/constants');
+const { DEFAULT_PICTURE, REG_FOR_AT_WHO} = require('../conf/constants');
 const { timeFormat } = require('../utils/dt');
 
 /**
@@ -59,10 +59,31 @@ function formatBlog(list){
 
     if (list instanceof Array){
         // 数组
-        return list.map(_formatDBTime)
+        return list.map(_formatDBTime).map(_formatContent)
     }
     // 对象
-    return _formatDBTime(list)
+    let result = list;
+    result = _formatDBTime(result);
+    result = _formatContent(result);
+    return result
+}
+
+/**
+ * 格式化微博内容
+ * @param obj
+ * @private
+ */
+function _formatContent(obj){
+    obj.contentFormat = obj.content;
+
+    // 格式化 @
+    obj.contentFormat = obj.contentFormat.replace(
+        REG_FOR_AT_WHO,
+        (matchStr, nickName, userName) => {
+            return `<a href="/profile/${userName}">@${nickName}</a>`
+        }
+    );
+    return obj
 }
 
 module.exports = {
