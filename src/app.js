@@ -20,6 +20,7 @@ const blogViewRouter = require('./routes/view/blog');
 const homeApiRouter = require('./routes/api/blog-home');
 const profileApiRouter = require('./routes/api/blog-profile');
 const squareApiRouter = require('./routes/api/blog-square');
+const atMeApiRouter = require('./routes/api/blog-at');
 
 const { REDIS_CONF } = require('./conf/db');
 const { isProd } = require('./utils/env');
@@ -88,6 +89,7 @@ app.use(utilsApiRouter.routes(), utilsApiRouter.allowedMethods());
 app.use(homeApiRouter.routes(), homeApiRouter.allowedMethods());
 app.use(profileApiRouter.routes(), profileApiRouter.allowedMethods());
 app.use(squareApiRouter.routes(), squareApiRouter.allowedMethods());
+app.use(atMeApiRouter.routes(), atMeApiRouter.allowedMethods());
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling
